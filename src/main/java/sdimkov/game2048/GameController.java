@@ -98,7 +98,7 @@ public class GameController {
 	}
 
 	private List<Position> getUnoccupiedTiles() {
-		List<Position> unoccupiedTiles = new ArrayList<>();
+		List<Position> unoccupiedTiles = new ArrayList<Position>();
 		for (int x=0; x<4; x++)
 			for (int y=0; y<4; y++)
 				if(tiles[x][y] == null) unoccupiedTiles.add(new Position(x,y));
