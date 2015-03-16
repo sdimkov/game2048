@@ -5,30 +5,30 @@
 <?import javafx.scene.shape.*?>
 
 <GridPane
-        id="grid" fx:id="grid"
-        fx:controller="sdimkov.game2048.GameController"
-        prefHeight="500" prefWidth="500"
-        hgap="16.0" vgap="16.0"
-        xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
-    <padding>
-        <Insets top="16" bottom="16" left="16" right="16"/>
-    </padding>
-    <children>
-        <Rectangle styleClass="tile,tile-0" id="21" height="105" width="105" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-        <Rectangle styleClass="tile,tile-0" id="31" height="105" width="105" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-        <Rectangle styleClass="tile,tile-0" id="22" height="105" width="105" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-        <Rectangle styleClass="tile,tile-0" id="32" height="105" width="105" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-        <Rectangle styleClass="tile,tile-0" id="23" height="105" width="105" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-        <Rectangle styleClass="tile,tile-0" id="33" height="105" width="105" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-        <Rectangle styleClass="tile,tile-0" id="20" height="105" width="105" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-        <Rectangle styleClass="tile,tile-0" id="30" height="105" width="105" GridPane.columnIndex="3" GridPane.rowIndex="0" />
-        <Rectangle styleClass="tile,tile-0" id="10" height="105" width="105" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-        <Rectangle styleClass="tile,tile-0" id="11" height="105" width="105" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-        <Rectangle styleClass="tile,tile-0" id="12" height="105" width="105" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-        <Rectangle styleClass="tile,tile-0" id="13" height="105" width="105" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-        <Rectangle styleClass="tile,tile-0" id="02" height="105" width="105" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-        <Rectangle styleClass="tile,tile-0" id="01" height="105" width="105" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-        <Rectangle styleClass="tile,tile-0" id="03" height="105" width="105" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-        <Rectangle styleClass="tile,tile-0" id="00" height="105" width="105" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-    </children>
+		id="grid" fx:id="grid"
+		fx:controller="sdimkov.game2048.GameController"
+		prefHeight="500" prefWidth="500"
+		hgap="16.0" vgap="16.0"
+		xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
+	<padding>
+		<Insets top="16" bottom="16" left="16" right="16"/>
+	</padding>
+	<children>
+		<Rectangle styleClass="tile,tile-0" id="21" height="105" width="105" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+		<Rectangle styleClass="tile,tile-0" id="31" height="105" width="105" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+		<Rectangle styleClass="tile,tile-0" id="22" height="105" width="105" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+		<Rectangle styleClass="tile,tile-0" id="32" height="105" width="105" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+		<Rectangle styleClass="tile,tile-0" id="23" height="105" width="105" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+		<Rectangle styleClass="tile,tile-0" id="33" height="105" width="105" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+		<Rectangle styleClass="tile,tile-0" id="20" height="105" width="105" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+		<Rectangle styleClass="tile,tile-0" id="30" height="105" width="105" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+		<Rectangle styleClass="tile,tile-0" id="10" height="105" width="105" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+		<Rectangle styleClass="tile,tile-0" id="11" height="105" width="105" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+		<Rectangle styleClass="tile,tile-0" id="12" height="105" width="105" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+		<Rectangle styleClass="tile,tile-0" id="13" height="105" width="105" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+		<Rectangle styleClass="tile,tile-0" id="02" height="105" width="105" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+		<Rectangle styleClass="tile,tile-0" id="01" height="105" width="105" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+		<Rectangle styleClass="tile,tile-0" id="03" height="105" width="105" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+		<Rectangle styleClass="tile,tile-0" id="00" height="105" width="105" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+	</children>
 </GridPane>

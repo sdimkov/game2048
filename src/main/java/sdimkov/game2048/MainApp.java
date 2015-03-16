@@ -19,23 +19,22 @@ public class MainApp extends Application {
 
 	public void start(Stage stage) throws Exception {
 
-		log.info("Starting Hello JavaFX and Maven demonstration application");
+		log.info("Starting JavaFX application");
 
 		String fxmlFile = "/fxml/game.fxml";
 		log.debug("Loading FXML for main view from: {}", fxmlFile);
 		FXMLLoader loader = new FXMLLoader();
 		Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
-		final GameController controller = loader.getController();
 
 		log.debug("Showing JFX scene");
 		final Scene scene = new Scene(rootNode);
 		scene.getStylesheets().add("/styles/game.css");
-
-		stage.setTitle("Hello JavaFX and Maven");
+		stage.setTitle("JavaFX 2048");
 		stage.setScene(scene);
 		stage.setResizable(false);
 		stage.show();
 
+		final GameController controller = loader.getController();
 		scene.setOnKeyReleased(new EventHandler<javafx.scene.input.KeyEvent>() {
 			@Override
 			public void handle(javafx.scene.input.KeyEvent event) {
