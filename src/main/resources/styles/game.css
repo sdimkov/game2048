@@ -1,0 +1,52 @@
+#grid {
+	-fx-background-color: #A39284;
+}
+
+.tile {
+	-fx-arc-height: 6px;
+	-fx-arc-width: 6px;
+	-fx-stroke: transparent;
+}
+
+.text {
+	-fx-font-size: 55px;
+	-fx-font-weight: bold;
+	-fx-stroke: transparent;
+}
+
+.tile-0 {  -fx-fill: #baaa9c;  }
+.text-0 {  -fx-fill: #776e65;  }
+
+.tile-2 {  -fx-fill: #eee4da;  }
+.text-2 {  -fx-fill: #776e65;  }
+
+.tile-4 {  -fx-fill: #ede0c8;  }
+.text-4 {  -fx-fill: #776e65;  }
+
+.tile-8 {  -fx-fill: #f2b179;  }
+.text-8 {  -fx-fill: #f9f6f2;  }
+
+.tile-16 {  -fx-fill: #f59563;  }
+.text-16 {  -fx-fill: #f9f6f2;  }
+
+.tile-32 {  -fx-fill: #f67c5f;  }
+.text-32 {  -fx-fill: #f9f6f2;  }
+
+.tile-64 {  -fx-fill: #f65e3b;  }
+.text-64 {  -fx-fill: #f9f6f2;  }
+
+.tile-128 {  -fx-fill: #f59563;  }
+.text-128 {  -fx-fill: #f9f6f2; -fx-font-size: 45px; }
+
+.tile-256 {  -fx-fill: #edcc61;  }
+.text-256 {  -fx-fill: #f9f6f2; -fx-font-size: 45px; }
+
+.tile-512 {  -fx-fill: #edc850;  }
+.text-512 {  -fx-fill: #f9f6f2; -fx-font-size: 45px; }
+
+.tile-1024 {  -fx-fill: #edc53f;  }
+.text-1024 {  -fx-fill: #f9f6f2; -fx-font-size: 35px; }
+
+.tile-2048 {  -fx-fill: #edc22e;  }
+.text-2048 {  -fx-fill: #f9f6f2; -fx-font-size: 35px; }
+
