@@ -52,6 +52,7 @@ public class GameController {
 	}
 
 	private void makeMove(Direction direction) {
+		boolean moveMade = false;
 		for (int row = 0; row < 4; row++) {
 			int target=0, column=1;
 			while (column < 4) {
@@ -72,6 +73,7 @@ public class GameController {
 					tiles[to.x][to.y] = tiles[from.x][from.y];
 					tiles[from.x][from.y] = null;
 					column++;
+					moveMade = true;
 				}
 				else {
 					if (tiles[to.x][to.y].getValue() == tiles[from.x][from.y].getValue()) {
@@ -86,12 +88,13 @@ public class GameController {
 						});
 						tiles[from.x][from.y] = null;
 						column++;
+						moveMade = true;
 					}
 					target++;
 				}
 			}
 		}
-		addNewTile();
+		if (moveMade) addNewTile();
 	}
 
 	private List<Position> getUnoccupiedTiles() {
