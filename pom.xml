@@ -20,27 +20,20 @@
 	</properties>
 
 	<build>
-
 		<finalName>game2048</finalName>
-
 		<plugins>
-
 			<plugin>
 				<groupId>com.zenjava</groupId>
 				<artifactId>javafx-maven-plugin</artifactId>
 				<version>8.1.2</version>
 				<configuration>
-
 					<mainClass>sdimkov.game2048.MainApp</mainClass>
-
 					<!-- only required if signing the jar file -->
 					<keyStoreAlias>example-user</keyStoreAlias>
 					<keyStorePassword>example-password</keyStorePassword>
 					<allPermissions>true</allPermissions>
-
 				</configuration>
 			</plugin>
-
 		</plugins>
 	</build>
 

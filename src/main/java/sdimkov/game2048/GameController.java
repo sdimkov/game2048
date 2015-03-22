@@ -1,6 +1,8 @@
 package sdimkov.game2048;
 
 
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -10,18 +12,48 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
 public class GameController {
 
 	private static final Logger log = LoggerFactory.getLogger(GameController.class);
+
 	private Tile[][] tiles = new Tile[4][4];
 	private @FXML GridPane grid;
+	private BlockingQueue<Direction> moves = new ArrayBlockingQueue<Direction>(25);
 
 	public void initialize() {
 		newGame();
+
+		// Execute user moves stored in the queue
+		Task executeMoves = new Task<Void>() {
+			@Override
+			public Void call() throws InterruptedException {
+				while (true) {
+					final Direction move = moves.take();
+					final BlockingQueue<Boolean> moveResult =
+							new ArrayBlockingQueue<Boolean>(1);
+
+					// Make the move in the FX UI thread
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							moveResult.add(makeMove(move));
+						}
+					});
+
+					// Wait animations to finish if actual move was performed
+					if (moveResult.take()) Thread.sleep(150);
+				}
+			}
+		};
+		Thread thread = new Thread(executeMoves);
+		thread.setDaemon(true);
+		thread.start();
 	}
 
-	public void newGame() {
+	public synchronized void newGame() {
 		// Delete all tiles from previous games
 		for (int x=0; x<4; x++)
 			for (int y=0; y<4; y++)
@@ -35,8 +67,13 @@ public class GameController {
 		addNewTile();
 	}
 
-	public void move(Direction direction) {
-		makeMove(direction);
+	public synchronized void move(Direction direction) {
+		// Add new move to the queue
+		try {
+			moves.add(direction);
+		} catch (IllegalStateException e) {
+			log.error("Moves queue capacity limit reached!", e);
+		}
 	}
 
 	/* Translate coordinates based on direction. The algorithm of makeMove() is written for
@@ -51,7 +88,7 @@ public class GameController {
 		}
 	}
 
-	private void makeMove(Direction direction) {
+	private boolean makeMove(Direction direction) {
 		boolean moveMade = false;
 		for (int row = 0; row < 4; row++) {
 			int target=0, column=1;
@@ -95,6 +132,7 @@ public class GameController {
 			}
 		}
 		if (moveMade) addNewTile();
+		return moveMade;
 	}
 
 	private List<Position> getUnoccupiedTiles() {
@@ -107,10 +145,15 @@ public class GameController {
 	}
 
 	private void addNewTile() {
+		// Choose a random free spot on the game grid
 		List<Position> unoccupiedTiles = getUnoccupiedTiles();
 		int index = (int) (Math.random()*unoccupiedTiles.size());
+
+		// Choose randomly between 2 and 4 tile
 		Position pos = unoccupiedTiles.get(index);
 		tiles[pos.x][pos.y] = ((int) (Math.random()*2) == 0) ? new Tile(2) : new Tile(4);
+
+		// Place the new tile
 		grid.add(tiles[pos.x][pos.y], pos.x, pos.y);
 		tiles[pos.x][pos.y].appear();
 	}

@@ -9,16 +9,17 @@ import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+
 public class MainApp extends Application {
 
 	private static final Logger log = LoggerFactory.getLogger(MainApp.class);
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws IOException {
 		launch(args);
 	}
 
-	public void start(Stage stage) throws Exception {
-
+	public void start(Stage stage) throws IOException {
 		log.info("Starting JavaFX application");
 
 		String fxmlFile = "/fxml/game.fxml";
