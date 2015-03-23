@@ -1,34 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<GridPane
-		id="grid" fx:id="grid"
-		fx:controller="sdimkov.game2048.GameController"
-		prefHeight="500" prefWidth="500"
-		hgap="16.0" vgap="16.0"
+<Pane fx:controller="sdimkov.game2048.GameController"
+		prefHeight="702.0" prefWidth="542.0"
 		xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
-	<padding>
-		<Insets top="16" bottom="16" left="16" right="16"/>
-	</padding>
-	<children>
-		<Rectangle styleClass="tile,tile-0" id="21" height="105" width="105" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-		<Rectangle styleClass="tile,tile-0" id="31" height="105" width="105" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-		<Rectangle styleClass="tile,tile-0" id="22" height="105" width="105" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-		<Rectangle styleClass="tile,tile-0" id="32" height="105" width="105" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-		<Rectangle styleClass="tile,tile-0" id="23" height="105" width="105" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-		<Rectangle styleClass="tile,tile-0" id="33" height="105" width="105" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-		<Rectangle styleClass="tile,tile-0" id="20" height="105" width="105" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-		<Rectangle styleClass="tile,tile-0" id="30" height="105" width="105" GridPane.columnIndex="3" GridPane.rowIndex="0" />
-		<Rectangle styleClass="tile,tile-0" id="10" height="105" width="105" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-		<Rectangle styleClass="tile,tile-0" id="11" height="105" width="105" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-		<Rectangle styleClass="tile,tile-0" id="12" height="105" width="105" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-		<Rectangle styleClass="tile,tile-0" id="13" height="105" width="105" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-		<Rectangle styleClass="tile,tile-0" id="02" height="105" width="105" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-		<Rectangle styleClass="tile,tile-0" id="01" height="105" width="105" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-		<Rectangle styleClass="tile,tile-0" id="03" height="105" width="105" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-		<Rectangle styleClass="tile,tile-0" id="00" height="105" width="105" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-	</children>
-</GridPane>
+
+	<Label layoutX="20.0" layoutY="1.0" prefHeight="94.0" prefWidth="248.0" text="2048" textFill="#776e65" >
+		<font>
+			<Font name="Arial" />
+			<Font name="Arial Bold" />
+			<Font name="Arial Black" size="72.0" />
+		</font>
+	</Label>
+
+	<Rectangle height="53.0" layoutX="325.0" layoutY="27.0" styleClass="score-tile" width="84.0" />
+	<Label text="SCORE" layoutX="344.0" layoutY="34.0" styleClass="score-label" />
+	<Label text="60" styleClass="score-value" alignment="CENTER" layoutX="329.0" layoutY="51.0" prefHeight="20.0" prefWidth="77.0" />
+
+	<Rectangle height="53.0" layoutX="416.0" layoutY="27.0" styleClass="score-tile" width="102.0" />
+	<Label text="BEST" layoutX="450.0" layoutY="34.0" prefHeight="16.0" prefWidth="36.0" styleClass="score-label" />
+	<Label text="1230" styleClass="score-value" alignment="CENTER" layoutX="428.0" layoutY="51.0" prefHeight="20.0" prefWidth="77.0" />
+
+	<Label layoutX="20.0" layoutY="116.0" styleClass="desc" text="Join the numbers and get to the 2048 tile!" />
+	<Button layoutX="382.0" layoutY="109.0" onAction="#newGame" prefHeight="38.0" prefWidth="137.0" text="New Game" />
+
+	<StackPane layoutX="20.0" layoutY="180.0">
+		<Rectangle height="500" styleClass="grid-background" width="500" />
+		<GridPane id="grid" fx:id="grid" hgap="16.0" prefHeight="500" prefWidth="500" vgap="16.0">
+			<padding>
+				<Insets bottom="16" left="16" right="16" top="16" />
+			</padding>
+			<children>
+				<Rectangle id="21" height="105" styleClass="tile,tile-0" width="105" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+				<Rectangle id="31" height="105" styleClass="tile,tile-0" width="105" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+				<Rectangle id="22" height="105" styleClass="tile,tile-0" width="105" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+				<Rectangle id="32" height="105" styleClass="tile,tile-0" width="105" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+				<Rectangle id="23" height="105" styleClass="tile,tile-0" width="105" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+				<Rectangle id="33" height="105" styleClass="tile,tile-0" width="105" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+				<Rectangle id="20" height="105" styleClass="tile,tile-0" width="105" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+				<Rectangle id="30" height="105" styleClass="tile,tile-0" width="105" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+				<Rectangle id="10" height="105" styleClass="tile,tile-0" width="105" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+				<Rectangle id="11" height="105" styleClass="tile,tile-0" width="105" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+				<Rectangle id="12" height="105" styleClass="tile,tile-0" width="105" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+				<Rectangle id="13" height="105" styleClass="tile,tile-0" width="105" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+				<Rectangle id="02" height="105" styleClass="tile,tile-0" width="105" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+				<Rectangle id="01" height="105" styleClass="tile,tile-0" width="105" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+				<Rectangle id="03" height="105" styleClass="tile,tile-0" width="105" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+				<Rectangle id="00" height="105" styleClass="tile,tile-0" width="105" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+			</children>
+		</GridPane>
+	</StackPane>
+
+</Pane>

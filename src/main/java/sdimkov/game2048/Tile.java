@@ -30,7 +30,7 @@ public class Tile extends StackPane {
 
 	private void init() {
 		rectangle.getStyleClass().setAll("tile", "tile-" + value);
-		text.getStyleClass().setAll("text", "text-" + value);
+		text.getStyleClass().setAll("tile-text", "text-" + value);
 		text.setText(String.valueOf(value));
 	}
 
