@@ -6,7 +6,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<Pane fx:controller="sdimkov.game2048.GameController"
+<Pane fx:controller="sdimkov.game2048.GameController" fx:id="root"
 		prefHeight="702.0" prefWidth="542.0"
 		xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
 
@@ -20,18 +20,18 @@
 
 	<Rectangle height="53.0" layoutX="325.0" layoutY="27.0" styleClass="score-tile" width="84.0" />
 	<Label text="SCORE" layoutX="344.0" layoutY="34.0" styleClass="score-label" />
-	<Label text="60" styleClass="score-value" alignment="CENTER" layoutX="329.0" layoutY="51.0" prefHeight="20.0" prefWidth="77.0" />
+	<Label fx:id="score" text="60" styleClass="score-value" alignment="CENTER" layoutX="329.0" layoutY="51.0" prefHeight="20.0" prefWidth="77.0" />
 
 	<Rectangle height="53.0" layoutX="416.0" layoutY="27.0" styleClass="score-tile" width="102.0" />
 	<Label text="BEST" layoutX="450.0" layoutY="34.0" prefHeight="16.0" prefWidth="36.0" styleClass="score-label" />
-	<Label text="1230" styleClass="score-value" alignment="CENTER" layoutX="428.0" layoutY="51.0" prefHeight="20.0" prefWidth="77.0" />
+	<Label fx:id="best" text="1230" styleClass="score-value" alignment="CENTER" layoutX="428.0" layoutY="51.0" prefHeight="20.0" prefWidth="77.0" />
 
 	<Label layoutX="20.0" layoutY="116.0" styleClass="desc" text="Join the numbers and get to the 2048 tile!" />
 	<Button layoutX="382.0" layoutY="109.0" onAction="#newGame" prefHeight="38.0" prefWidth="137.0" text="New Game" />
 
 	<StackPane layoutX="20.0" layoutY="180.0">
 		<Rectangle height="500" styleClass="grid-background" width="500" />
-		<GridPane id="grid" fx:id="grid" hgap="16.0" prefHeight="500" prefWidth="500" vgap="16.0">
+		<GridPane fx:id="grid" hgap="16.0" prefHeight="500" prefWidth="500" vgap="16.0">
 			<padding>
 				<Insets bottom="16" left="16" right="16" top="16" />
 			</padding>

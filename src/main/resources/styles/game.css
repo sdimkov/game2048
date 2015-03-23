@@ -12,6 +12,14 @@
 	-fx-text-fill: white;
 }
 
+.score-increase {
+    -fx-alignment: center;
+    -fx-opacity: 0.7;
+    -fx-font: 21px "Arial Bold";
+    -fx-text-fill: black;
+    -fx-pref-width: 65px;
+}
+
 .score-tile {
 	-fx-fill: #bbada0;
 	-fx-arc-height: 6px;

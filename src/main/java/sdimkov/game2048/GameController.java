@@ -1,12 +1,20 @@
 package sdimkov.game2048;
 
 
+import javafx.animation.FadeTransition;
+import javafx.animation.ParallelTransition;
+import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,8 +27,12 @@ public class GameController {
 
 	private static final Logger log = LoggerFactory.getLogger(GameController.class);
 
-	private Tile[][] tiles = new Tile[4][4];
+	private @FXML Pane     root;
 	private @FXML GridPane grid;
+	private @FXML Label    score;
+	private @FXML Label    best;
+
+	private Tile[][] tiles = new Tile[4][4];
 	private BlockingQueue<Direction> moves = new ArrayBlockingQueue<Direction>(25);
 
 	public void initialize() {
@@ -61,6 +73,7 @@ public class GameController {
 					grid.getChildren().remove(tiles[x][y]);
 					tiles[x][y] = null;
 				}
+		score.setText("0");
 
 		// Add two starting tiles
 		addNewTile();
@@ -123,6 +136,7 @@ public class GameController {
 							public void handle(ActionEvent event) {
 								grid.getChildren().remove(movingTile);
 								targetTile.promote();
+								increaseScore(targetTile.getValue());
 							}
 						});
 						tiles[from.x][from.y] = null;
@@ -158,6 +172,42 @@ public class GameController {
 		// Place the new tile
 		grid.add(tiles[pos.x][pos.y], pos.x, pos.y);
 		tiles[pos.x][pos.y].appear();
+	}
+
+	private synchronized void increaseScore(int value) {
+		// Remove previous increase animation if such still runs
+		Node currentAnimation = root.lookup("#score-increase");
+		if (currentAnimation != null)
+			root.getChildren().remove(currentAnimation);
+
+		// Update the score
+		score.setText(String.valueOf(Integer.valueOf(score.getText()) + value));
+
+		// Create score animation
+		final Group increase = new Group();
+		increase.setId("score-increase");
+		increase.setLayoutX(score.getLayoutX());
+		increase.setLayoutY(score.getLayoutY());
+		final Label animationText = new Label("+" + value);
+		animationText.getStyleClass().setAll("score-increase");
+		TranslateTransition move = new TranslateTransition(Duration.millis(400));
+		move.setByY(-50);
+		FadeTransition fade = new FadeTransition(Duration.millis(400));
+		fade.setFromValue(0.70);
+		fade.setToValue(0.05);
+		increase.getChildren().add(animationText);
+		ParallelTransition increaseAnimation = new ParallelTransition(increase, move, fade);
+		increaseAnimation.setOnFinished(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				root.getChildren().remove(increase);
+			}
+		});
+
+		// Play the animation
+		root.getChildren().add(increase);
+		increaseAnimation.play();
+
 	}
 }
 
