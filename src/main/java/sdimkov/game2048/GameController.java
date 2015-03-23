@@ -97,15 +97,16 @@ public class GameController {
 					column++;
 					if (column == 4) break;
 				}
-				
+				// Translate coordinates according to direction
 				Position from = translate(direction, column, row);
 				Position to   = translate(direction, target, row);
-
+				// Skip if from tile is empty
 				if (tiles[from.x][from.y] == null) {
 					column++;
 					continue;
 				}
 				if (tiles[to.x][to.y] == null) {
+					// Move tile to an empty slot
 					tiles[from.x][from.y].moveTo(grid.lookup("#" + to.x + to.y), null);
 					tiles[to.x][to.y] = tiles[from.x][from.y];
 					tiles[from.x][from.y] = null;
@@ -114,6 +115,7 @@ public class GameController {
 				}
 				else {
 					if (tiles[to.x][to.y].getValue() == tiles[from.x][from.y].getValue()) {
+						// Merge 2 tiles
 						final Tile targetTile = tiles[to.x][to.y];
 						final Tile movingTile = tiles[from.x][from.y];
 						movingTile.moveTo(targetTile, new EventHandler<ActionEvent>() {
@@ -151,7 +153,7 @@ public class GameController {
 
 		// Choose randomly between 2 and 4 tile
 		Position pos = unoccupiedTiles.get(index);
-		tiles[pos.x][pos.y] = ((int) (Math.random()*2) == 0) ? new Tile(2) : new Tile(4);
+		tiles[pos.x][pos.y] = (Math.random() < 0.9) ? new Tile(2) : new Tile(4);
 
 		// Place the new tile
 		grid.add(tiles[pos.x][pos.y], pos.x, pos.y);
