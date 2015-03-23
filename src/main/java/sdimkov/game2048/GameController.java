@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
+import java.util.prefs.Preferences;
 
 public class GameController {
 
@@ -29,13 +30,19 @@ public class GameController {
 
 	private @FXML Pane     root;
 	private @FXML GridPane grid;
-	private @FXML Label    score;
-	private @FXML Label    best;
+	private @FXML Label    scoreLabel;
+	private @FXML Label    bestLabel;
 
+	private int score = 0, best = 0;
 	private Tile[][] tiles = new Tile[4][4];
 	private BlockingQueue<Direction> moves = new ArrayBlockingQueue<Direction>(25);
 
 	public void initialize() {
+		// Read current best score for user
+		best = Preferences.userRoot().node("game2048").getInt("highscore", 0);
+		bestLabel.setText(String.valueOf(best));
+
+		// Initiate a new game
 		newGame();
 
 		// Execute user moves stored in the queue
@@ -73,7 +80,8 @@ public class GameController {
 					grid.getChildren().remove(tiles[x][y]);
 					tiles[x][y] = null;
 				}
-		score.setText("0");
+		score = 0;
+		scoreLabel.setText("0");
 
 		// Add two starting tiles
 		addNewTile();
@@ -175,19 +183,21 @@ public class GameController {
 	}
 
 	private synchronized void increaseScore(int value) {
-		// Remove previous increase animation if such still runs
-		Node currentAnimation = root.lookup("#score-increase");
-		if (currentAnimation != null)
-			root.getChildren().remove(currentAnimation);
-
 		// Update the score
-		score.setText(String.valueOf(Integer.valueOf(score.getText()) + value));
+		score += value;
+		scoreLabel.setText(String.valueOf(score));
+		if (best < score) {
+			best = score;
+			bestLabel.setText(String.valueOf(best));
+			// Store new best score persistently
+			Preferences.userRoot().node("game2048").putInt("highscore", best);
+		}
 
 		// Create score animation
 		final Group increase = new Group();
 		increase.setId("score-increase");
-		increase.setLayoutX(score.getLayoutX());
-		increase.setLayoutY(score.getLayoutY());
+		increase.setLayoutX(scoreLabel.getLayoutX());
+		increase.setLayoutY(scoreLabel.getLayoutY());
 		final Label animationText = new Label("+" + value);
 		animationText.getStyleClass().setAll("score-increase");
 		TranslateTransition move = new TranslateTransition(Duration.millis(400));
@@ -204,10 +214,14 @@ public class GameController {
 			}
 		});
 
+		// Remove previous increase animation if such still runs
+		Node currentAnimation = root.lookup("#score-increase");
+		if (currentAnimation != null)
+			root.getChildren().remove(currentAnimation);
+
 		// Play the animation
 		root.getChildren().add(increase);
 		increaseAnimation.play();
-
 	}
 }
 
